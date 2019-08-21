@@ -32,6 +32,13 @@ program
 	.option('--no-spinner', 'disable progress spinner', false)
 	.option('--stdin', 'read predefined tree from STDIN', false)
 	.option('--warning', 'show warnings about skipped files', false)
+	.option('--assets-color <color>', 'color for assets dependencies', "#fae3d9")
+	.option('--components-color <color>', 'color for components dependencies', '#bbded6')
+	.option('--hocs-color <color>', 'color for hocs dependencies', '#8ac6d1')
+	.option('--hooks-color <color>', 'color for hooks dependencies', '#ffb6b9')
+	.option('--pages-color <color>', 'color for pages dependencies', '#f9e090')
+	.option('--root-color <color>', 'color for root dependencies', '#ff935c')
+	.option('--utils-color <color>', 'color for utils dependencies', '#caf2d7')
 	.option('--debug', 'turn on debug output', false)
 	.parse(process.argv);
 
@@ -44,7 +51,7 @@ if (program.debug) {
 	process.env.DEBUG = '*';
 }
 
-if (!program.color) {
+if (!program.color || true) {
 	process.env.DEBUG_COLORS = false;
 }
 
@@ -54,7 +61,7 @@ const madge = require('../lib/api');
 const config = Object.assign({}, rc);
 
 program.options.forEach((opt) => {
-	const name = opt.name();
+	const name = opt.attributeName();
 
 	if (program[name]) {
 		config[name] = program[name];
@@ -106,7 +113,7 @@ if (program.includeNpm) {
 	config.includeNpm = program.includeNpm;
 }
 
-if (!program.color) {
+if (!program.color || true) {
 	config.backgroundColor = '#ffffff';
 	config.nodeColor = '#000000';
 	config.noDependencyColor = '#000000';
