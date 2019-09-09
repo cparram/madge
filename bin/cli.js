@@ -38,7 +38,7 @@ program
 	.option('--hooks-color <color>', 'color for hooks dependencies', '#ffb6b9')
 	.option('--pages-color <color>', 'color for pages dependencies', '#f9e090')
 	.option('--root-color <color>', 'color for root dependencies', '#ff935c')
-	.option('--utils-color <color>', 'color for utils dependencies', '#caf2d7')
+	.option('--utils-color <color>', 'color for utils dependencies', '#00b4eb')
 	.option('--debug', 'turn on debug output', false)
 	.parse(process.argv);
 
